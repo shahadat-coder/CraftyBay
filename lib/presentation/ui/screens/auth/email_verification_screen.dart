@@ -1,11 +1,14 @@
+import 'package:crafty_bay/presentation/State_Holder/email_verification_controller.dart';
 import 'package:crafty_bay/presentation/ui/screens/auth/pin_verification_screen.dart';
 import 'package:crafty_bay/presentation/ui/utils/asset_images.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
+
+
 class EmailVerificationScreen extends StatefulWidget {
-  const EmailVerificationScreen({super.key});
+  const EmailVerificationScreen({Key? key}) : super(key: key);
 
   @override
   State<EmailVerificationScreen> createState() =>
@@ -13,84 +16,104 @@ class EmailVerificationScreen extends StatefulWidget {
 }
 
 class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
+  final TextEditingController _emailTEController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  final TextEditingController _emailController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            children: [
-              const SizedBox(
-                height: 120,
-              ),
-              Center(
-                  child: SvgPicture.asset(
-                AppImageAssets.craftyBayLogoSVG,
-                width: 120,
-              )),
-              const SizedBox(
-                height: 20,
-              ),
-              Text(
-                'Welcome Back',
-                style: Theme.of(context)
-                    .textTheme
-                    .titleLarge
-                    ?.copyWith(fontSize: 28, color: Colors.grey[800]),
-              ),
-              const SizedBox(
-                height: 6,
-              ),
-              Text(
-                'Please Enter Your Email Address',
-                style: Theme.of(context)
-                    .textTheme
-                    .bodySmall
-                    ?.copyWith(fontSize: 14, color: Colors.grey),
-              ),
-              const SizedBox(
-                height: 16,
-              ),
-              TextFormField(
-                controller: _emailController,
-                keyboardType: TextInputType.emailAddress,
-                textInputAction: TextInputAction.next,
-                decoration: const InputDecoration(
-                  hintText: 'Email Address',
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              children: [
+                const SizedBox(
+                  height: 80,
                 ),
-                validator: (String? value) {
-                  if (value?.isEmpty ?? true) {
-                    return "Enter your email address";
-                  }
-                  if (!RegExp(r'^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$')
-                      .hasMatch(value!)) {
-                    return "Enter a valid email address";
-                  }
-                  return null;
-                },
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              SizedBox(
+                Center(
+                  child: SvgPicture.asset(
+                    AppImageAssets.craftyBayLogoSVG,
+                    width: 100,
+                  ),
+                ),
+                const SizedBox(
+                  height: 16,
+                ),
+                Text(
+                  'Welcome back',
+                  style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                    fontSize: 24,
+                  ),
+                ),
+                const SizedBox(
+                  height: 4,
+                ),
+                Text('Please enter your email address',
+                    style: Theme.of(context)
+                        .textTheme
+                        .titleMedium
+                        ?.copyWith(color: Colors.grey)),
+                const SizedBox(
+                  height: 24,
+                ),
+                TextFormField(
+                  controller: _emailTEController,
+                  decoration: const InputDecoration(hintText: 'Email'),
+                  validator: (String? text) {
+                    if (text?.isEmpty ?? true) {
+                      return 'Enter your email address';
+                    } else if (text!.isEmail == false) {
+                      /// REGEX (Email validator)
+                      return 'Enter a valid email address';
+                    }
+                    return null;
+                  },
+                ),
+                const SizedBox(
+                  height: 16,
+                ),
+                SizedBox(
                   width: double.infinity,
-                  child: ElevatedButton(
-                      onPressed: () {
-                        if (!_formKey.currentState!.validate()) {
-                          return;
+                  child: GetBuilder<EmailVerificationController>(
+                      builder: (controller) {
+                        if (controller.emailVerificationInProgress) {
+                          return const Center(
+                            child: CircularProgressIndicator(),
+                          );
                         }
-
-                        Get.offAll(() => const PinVerificationScreen());
-                      },
-                      child: const Text('Next')))
-            ],
+                        return ElevatedButton(
+                          onPressed: () async {
+                            if (_formKey.currentState!.validate()) {
+                              verifyEmail(controller);
+                            }
+                          },
+                          child: const Text('Next'),
+                        );
+                      }),
+                ),
+              ],
+            ),
           ),
         ),
       ),
     );
+  }
+
+  Future<void> verifyEmail(EmailVerificationController controller) async {
+    final response =
+    await controller.verifyEmail(_emailTEController.text.trim());
+    if (response) {
+      Get.to(() => const PinVerificationScreen());
+    } else {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Email verification failed! Try again'),
+          ),
+        );
+      }
+    }
   }
 }
