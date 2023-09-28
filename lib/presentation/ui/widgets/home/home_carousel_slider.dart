@@ -1,9 +1,11 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:crafty_bay/data/models/slider_data.dart';
 import 'package:crafty_bay/presentation/ui/utils/color_palette.dart';
 import 'package:flutter/material.dart';
 
 class HomeCarouselSlider extends StatefulWidget {
-  const HomeCarouselSlider({super.key});
+  final List<SliderData> sliders;
+  const HomeCarouselSlider({super.key, required this.sliders});
 
   @override
   State<HomeCarouselSlider> createState() => _HomeCarouselSliderState();
@@ -30,26 +32,34 @@ enlargeFactor: 0.2,
               _selectedCarouselSlider.value = index;
             },
           ),
-          items: [1, 2, 3, 4, 5].map(
-            (i) {
+          items: widget.sliders.map(
+            (SliderData) {
               return Builder(
                 builder: (BuildContext context) {
                   return Container(
                     width: MediaQuery.of(context).size.width,
                     margin: const EdgeInsets.symmetric(horizontal: 5.0),
                     decoration: BoxDecoration(
-                        color: ColorPalette.primaryColor,
-                        borderRadius: BorderRadius.circular(10)),
+                        color: ColorPalette.primaryColor.withOpacity(0.15),
+                        borderRadius: BorderRadius.circular(8)),
                     alignment: Alignment.center,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Icon(Icons.image_not_supported_rounded, size: 60),
-                        Text(
-                          'Product $i',
-                          style: const TextStyle(fontSize: 20.0),
-                        ),
-                      ],
+                    child: Stack(
+                        children: [
+                          Image.network(SliderData. image ??  ''),
+                          Positioned(
+                            bottom: 0,
+                          child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                            Text(SliderData.title ?? '',style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.white,
+                            )),
+
+                          ]))
+                    ]
                     ),
                   );
                 },
@@ -64,7 +74,7 @@ enlargeFactor: 0.2,
           valueListenable: _selectedCarouselSlider,
           builder: (context, value, _) {
             List<Widget> carouselDotList = [];
-            for (int i = 0; i < 5; i++) {
+            for (int i = 0; i < widget.sliders.length ; i++) {
               carouselDotList.add(Container(
                 width: value == i ? 30 : 10,
                 height: 10,

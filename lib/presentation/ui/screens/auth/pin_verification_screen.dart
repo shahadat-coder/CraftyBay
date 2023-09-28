@@ -1,6 +1,8 @@
 import 'dart:async';
 
+import 'package:crafty_bay/presentation/State_Holder/pin_verification_controller.dart';
 import 'package:crafty_bay/presentation/ui/screens/auth/complete_profile_screen.dart';
+import 'package:crafty_bay/presentation/ui/screens/bottom_nav_base_screen.dart';
 import 'package:crafty_bay/presentation/ui/utils/asset_images.dart';
 import 'package:crafty_bay/presentation/ui/utils/color_palette.dart';
 import 'package:flutter/material.dart';
@@ -9,13 +11,15 @@ import 'package:get/get.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 class PinVerificationScreen extends StatefulWidget {
-  const PinVerificationScreen({super.key});
+  final String email;
+  const PinVerificationScreen({super.key, required this.email});
 
   @override
   State<PinVerificationScreen> createState() => _PinVerificationScreenState();
 }
 
 class _PinVerificationScreenState extends State<PinVerificationScreen> {
+
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _pinController = TextEditingController();
 
@@ -32,7 +36,7 @@ class _PinVerificationScreenState extends State<PinVerificationScreen> {
     const oneSecond = Duration(seconds: 1);
     _timer = Timer.periodic(
       oneSecond,
-      (Timer timer) {
+          (Timer timer) {
         if (_secondsRemaining == 0) {
           timer.cancel();
         } else {
@@ -71,15 +75,16 @@ class _PinVerificationScreenState extends State<PinVerificationScreen> {
               ),
               Center(
                   child: SvgPicture.asset(
-                AppImageAssets.craftyBayLogoSVG,
-                width: 120,
-              )),
+                    AppImageAssets.craftyBayLogoSVG,
+                    width: 120,
+                  )),
               const SizedBox(
                 height: 20,
               ),
               Text(
                 'Enter OTP Code',
-                style: Theme.of(context)
+                style: Theme
+                    .of(context)
                     .textTheme
                     .titleLarge
                     ?.copyWith(fontSize: 28, color: Colors.grey[800]),
@@ -89,7 +94,8 @@ class _PinVerificationScreenState extends State<PinVerificationScreen> {
               ),
               Text(
                 'A 4 digit OTP code has been sent',
-                style: Theme.of(context)
+                style: Theme
+                    .of(context)
                     .textTheme
                     .bodySmall
                     ?.copyWith(fontSize: 14, color: Colors.grey),
@@ -141,15 +147,20 @@ class _PinVerificationScreenState extends State<PinVerificationScreen> {
               ),
               SizedBox(
                 width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: () {
-                    if (!_formKey.currentState!.validate()) {
-                      return;
+                child: GetBuilder<PinVerificationController>(
+                    builder: (controller) {
+                      if (controller.otpVerificationInProgress) {
+                        return const Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      }
+                      return ElevatedButton(
+                        onPressed: () {
+                          verifyOtp(controller);
+                        },
+                        child: const Text('Next'),
+                      );
                     }
-
-                    Get.offAll(() => const CompleteProfileScreen());
-                  },
-                  child: const Text('Next'),
                 ),
               ),
               const SizedBox(
@@ -166,7 +177,8 @@ class _PinVerificationScreenState extends State<PinVerificationScreen> {
                           const TextSpan(text: 'This code will expire in '),
                           TextSpan(
                             text:
-                                '${_secondsRemaining}s', // Pluralize "second" if needed
+                            '${_secondsRemaining}s',
+                            // Pluralize "second" if needed
                             style: const TextStyle(
                               color: ColorPalette.primaryColor,
                               fontWeight: FontWeight.bold,
@@ -199,5 +211,21 @@ class _PinVerificationScreenState extends State<PinVerificationScreen> {
         ),
       ),
     );
+  }
+
+  Future<void> verifyOtp(PinVerificationController controller) async {
+    final response =
+    await controller.verifyOtp(widget.email,_pinController.text.trim());
+    if (response) {
+      Get.offAll(() => const BottomNavBaseScreen());
+    } else {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Otp verification failed! Try again'),
+          ),
+        );
+      }
+    }
   }
 }

@@ -13,11 +13,13 @@ class EmailVerificationScreen extends StatefulWidget {
   @override
   State<EmailVerificationScreen> createState() =>
       _EmailVerificationScreenState();
+
 }
 
 class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
   final TextEditingController _emailTEController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +45,11 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
                 ),
                 Text(
                   'Welcome back',
-                  style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                  style: Theme
+                      .of(context)
+                      .textTheme
+                      .titleLarge
+                      ?.copyWith(
                     fontSize: 24,
                   ),
                 ),
@@ -51,7 +57,8 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
                   height: 4,
                 ),
                 Text('Please enter your email address',
-                    style: Theme.of(context)
+                    style: Theme
+                        .of(context)
                         .textTheme
                         .titleMedium
                         ?.copyWith(color: Colors.grey)),
@@ -105,7 +112,7 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
     final response =
     await controller.verifyEmail(_emailTEController.text.trim());
     if (response) {
-      Get.to(() => const PinVerificationScreen());
+      Get.to(() => PinVerificationScreen(email: _emailTEController.text.trim(), ));
     } else {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(

@@ -1,3 +1,4 @@
+import 'package:crafty_bay/presentation/State_Holder/home_slider_controller.dart';
 import 'package:crafty_bay/presentation/ui/screens/auth/email_verification_screen.dart';
 import 'package:crafty_bay/presentation/ui/screens/categories_screens/electronics_categories_screen.dart';
 import 'package:crafty_bay/presentation/ui/screens/categories_screens/productList_screen.dart';
@@ -76,7 +77,19 @@ class _HomeScreenState extends State<HomeScreen> {
               const SizedBox(
                 height: 16,
               ),
-              const HomeCarouselSlider(),
+              GetBuilder<HomeSliderController>(
+                builder: (HomeSliderController) {
+                  if(HomeSliderController.getHomeSliderInProgress) {
+                    return const SizedBox(
+                      height: 80.0,
+                      width: 80.0,
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+                return  HomeCarouselSlider(
+                    sliders:HomeSliderController.sliderModel.data ?? [] );
+                }
+              ),
               SectionHeader(
                 title: 'All Categories',
                 onTap: () {
