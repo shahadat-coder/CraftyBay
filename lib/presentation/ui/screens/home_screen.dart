@@ -104,7 +104,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   itemBuilder: (context, index) {
                     return GestureDetector(
                         onTap: () {
-                          Get.to(ElectronicsCategoriesScreen());
+                          Get.to(const ElectronicsCategoriesScreen());
                         },
                         child: const CategoryCard());
                   },
