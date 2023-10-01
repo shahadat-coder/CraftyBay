@@ -46,11 +46,11 @@ class _WishScreenState extends State<WishScreen> {
               mainAxisSpacing: 32,
             ),
             itemBuilder: (context, index) {
-              return const FittedBox(
-                  fit: BoxFit.cover,
-                  child: ProductCard(
-                    icon: FontAwesomeIcons.trashCan,
-                  ));
+              // return const FittedBox(
+              //     fit: BoxFit.cover,
+              //     child: ProductCard(
+              //       icon: FontAwesomeIcons.trashCan,
+              //     ));
             },
           ),
         ),

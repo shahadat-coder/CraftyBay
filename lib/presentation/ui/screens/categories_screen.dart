@@ -1,5 +1,5 @@
+import 'package:crafty_bay/presentation/State_Holder/category_controller.dart';
 import 'package:crafty_bay/presentation/State_Holder/main_bottom_nav_controller.dart';
-import 'package:crafty_bay/presentation/ui/screens/bottom_nav_base_screen.dart';
 import 'package:crafty_bay/presentation/ui/widgets/category_coustomize/category_card.dart';
 import 'package:crafty_bay/presentation/ui/widgets/category_coustomize/constraints.dart';
 import 'package:flutter/material.dart';
@@ -34,20 +34,37 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
       },
         ),
         ),
-        body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
-          child: GridView.builder(
-            itemCount: 16,
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 4,
-              crossAxisSpacing: 16,
-              mainAxisSpacing: 16,
+        body: RefreshIndicator(
+          onRefresh: () async{
+            Get.find<CategoryController>().getCategory();
+          },
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
+            child: GetBuilder<CategoryController>(
+              builder: (categoryController, ) {
+                if(categoryController.getCategoryInProgress) {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
+                return GridView.builder(
+                  itemCount: categoryController.categoryModel.data?.length ?? 0,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 4,
+                    crossAxisSpacing: 16,
+                    mainAxisSpacing: 16,
+                  ),
+                  itemBuilder: (context, index) {
+                   return  FittedBox(
+                     child: CategoryCard(
+                        categoryData:
+                        categoryController.categoryModel.data![index]
+                     ),
+                  );
+                },
+                );
+              }
             ),
-            itemBuilder: (context, index) {
-              return const FittedBox(
-                child: CategoryCard(),
-              );
-            },
           ),
         ),
       ),

@@ -40,11 +40,11 @@ class _ElectronicsCategoriesScreenState extends State<ElectronicsCategoriesScree
             mainAxisSpacing: 32,
           ),
           itemBuilder: (context, index) {
-            return const FittedBox(
-                fit: BoxFit.cover,
-                child: ProductCard(
-                  icon: Icons.favorite_border_rounded,
-                ));
+            // return const FittedBox(
+            //     fit: BoxFit.cover,
+            //     child: ProductCard(
+            //       icon: Icons.favorite_border_rounded,
+            //     ));
           },
         ),
       ),

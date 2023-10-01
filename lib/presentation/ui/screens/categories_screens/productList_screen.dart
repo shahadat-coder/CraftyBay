@@ -40,11 +40,11 @@ class _ProductListScreenState extends State<ProductListScreen> {
             mainAxisSpacing: 32,
           ),
           itemBuilder: (context, index) {
-            return const FittedBox(
-                fit: BoxFit.cover,
-                child: ProductCard(
-                  icon: FontAwesomeIcons.trashCan,
-                ));
+            // return const FittedBox(
+            //     fit: BoxFit.cover,
+            //     child: ProductCard(
+            //       icon: FontAwesomeIcons.trashCan,
+            //     ));
           },
         ),
       ),

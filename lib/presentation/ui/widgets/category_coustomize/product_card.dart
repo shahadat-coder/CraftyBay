@@ -1,21 +1,23 @@
+import 'package:crafty_bay/data/models/product.dart';
 import 'package:crafty_bay/presentation/ui/screens/product_details.dart';
-import 'package:crafty_bay/presentation/ui/utils/asset_images.dart';
 import 'package:crafty_bay/presentation/ui/utils/color_palette.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ProductCard extends StatelessWidget {
-  final IconData icon;
   const ProductCard({
-    super.key, required this.icon,
+    super.key,
+    required this.product,
   });
+
+  final Product product;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      borderRadius:BorderRadius.circular(8),
-      onTap: (){
-        Get.to( ProductDetailsScreen());
+      borderRadius: BorderRadius.circular(8),
+      onTap: () {
+        Get.to(ProductDetailsScreen());
       },
       child: Card(
         shadowColor: ColorPalette.primaryColor.withOpacity(0.1),
@@ -33,8 +35,8 @@ class ProductCard extends StatelessWidget {
                     topLeft: Radius.circular(8),
                     topRight: Radius.circular(8),
                   ),
-                  image: const DecorationImage(
-                    image: AssetImage(AppImageAssets.productShoe),
+                  image: DecorationImage(
+                    image: NetworkImage(product.image ?? ''),
                   ),
                 ),
               ),
@@ -44,7 +46,7 @@ class ProductCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'New Shoe',
+                      product.title ?? '',
                       maxLines: 1,
                       style: TextStyle(
                         overflow: TextOverflow.ellipsis,
@@ -60,7 +62,7 @@ class ProductCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Text(
-                          '\$99',
+                          "\$${product.price ?? ''}",
                           maxLines: 1,
                           style: TextStyle(
                             overflow: TextOverflow.ellipsis,
@@ -75,13 +77,8 @@ class ProductCard extends StatelessWidget {
                         Wrap(
                           crossAxisAlignment: WrapCrossAlignment.center,
                           children: [
-                            const Icon(
-                              Icons.star,
-                              color: Colors.amber,
-                              size: 15,
-                            ),
                             Text(
-                              '4.9',
+                              '${product.star ?? 0}',
                               maxLines: 1,
                               style: TextStyle(
                                 overflow: TextOverflow.ellipsis,
@@ -99,11 +96,6 @@ class ProductCard extends StatelessWidget {
                           color: ColorPalette.primaryColor,
                           child: Padding(
                             padding: const EdgeInsets.all(4.0),
-                            child: Icon(
-                              icon,
-                              color: Colors.white,
-                              size: 8,
-                            ),
                           ),
                         ),
                       ],

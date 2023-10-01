@@ -1,4 +1,6 @@
+import 'package:crafty_bay/presentation/State_Holder/category_controller.dart';
 import 'package:crafty_bay/presentation/State_Holder/home_slider_controller.dart';
+import 'package:crafty_bay/presentation/State_Holder/popular_product_controller.dart';
 import 'package:crafty_bay/presentation/ui/screens/auth/email_verification_screen.dart';
 import 'package:crafty_bay/presentation/ui/screens/categories_screens/electronics_categories_screen.dart';
 import 'package:crafty_bay/presentation/ui/screens/categories_screens/productList_screen.dart';
@@ -13,8 +15,6 @@ import 'package:crafty_bay/presentation/ui/widgets/category_coustomize/product_c
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:get/route_manager.dart';
-
 import '../../State_Holder/main_bottom_nav_controller.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -98,16 +98,25 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               SizedBox(
                 height: 90,
-                child: ListView.builder(
-                  itemCount: 6,
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (context, index) {
-                    return GestureDetector(
-                        onTap: () {
-                          Get.to(const ElectronicsCategoriesScreen());
-                        },
-                        child: const CategoryCard());
-                  },
+                child: GetBuilder<CategoryController>(
+                  builder: (categoryController) {
+                    if(categoryController.getCategoryInProgress) {
+                      return const Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    }
+                    return ListView.builder(
+                      itemCount: categoryController.categoryModel.data!.length ?? 0,
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (context, index) {
+                        return GestureDetector(
+                            onTap: () {
+                              Get.to(const ElectronicsCategoriesScreen());
+                            },
+                            child: CategoryCard(categoryData: categoryController.categoryModel.data![index],));
+                      },
+                    );
+                  }
                 ),
               ),
               const SizedBox(
@@ -121,14 +130,23 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               SizedBox(
                 height: 155,
-                child: ListView.builder(
-                  itemCount: 6,
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (context, index) {
-                    return const ProductCard(
-                      icon: Icons.favorite_border_rounded,
+                child: GetBuilder<PopularController>(
+                  builder: (popularController) {
+                    if(popularController.getPopularProductInProgress) {
+                      return const Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    }
+                    return ListView.builder(
+                      itemCount: popularController.popularProductModel.data!.length ?? 0,
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (context, index) {
+                        return ProductCard(
+                          product:  popularController.popularProductModel.data![index],
+                        );
+                      },
                     );
-                  },
+                  }
                 ),
               ),
               SectionHeader(
@@ -143,9 +161,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   itemCount: 6,
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (context, index) {
-                    return const ProductCard(
-                      icon: Icons.favorite_border_rounded,
-                    );
+                    // return const ProductCard(
+                    //   icon: Icons.favorite_border_rounded,
+                    // );
                   },
                 ),
               ),
@@ -161,9 +179,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   itemCount: 6,
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (context, index) {
-                    return const ProductCard(
-                      icon: Icons.favorite_border_rounded,
-                    );
+                    // return const ProductCard(
+                    //   icon: Icons.favorite_border_rounded,
+                    // );
                   },
                 ),
               ),

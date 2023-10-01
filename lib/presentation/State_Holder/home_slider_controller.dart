@@ -25,6 +25,7 @@ class HomeSliderController extends GetxController {
       update();
       return true;
     } else {
+      _message = 'Slider data fetch failed';
       update();
       return false;
     }
