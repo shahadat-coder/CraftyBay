@@ -3,13 +3,13 @@ import 'package:crafty_bay/data/models/category_data.dart';
 import 'package:crafty_bay/data/models/product.dart';
 import 'package:flutter/foundation.dart';
 
-class PopularModel {
+class ProductModel {
     String? msg;
     List<Product>? data;
 
-    PopularModel({this.msg, this.data});
+    ProductModel({this.msg, this.data});
 
-    PopularModel.fromJson(Map<String, dynamic> json) {
+    ProductModel.fromJson(Map<String, dynamic> json) {
         msg = json['msg'];
         if (json['data'] != null) {
             data = <Product>[];

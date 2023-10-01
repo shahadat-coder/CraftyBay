@@ -1,6 +1,8 @@
 import 'package:crafty_bay/presentation/State_Holder/category_controller.dart';
 import 'package:crafty_bay/presentation/State_Holder/home_slider_controller.dart';
+import 'package:crafty_bay/presentation/State_Holder/new_product_controller.dart';
 import 'package:crafty_bay/presentation/State_Holder/popular_product_controller.dart';
+import 'package:crafty_bay/presentation/State_Holder/special_product_controller.dart';
 import 'package:crafty_bay/presentation/ui/screens/cart_screen.dart';
 import 'package:crafty_bay/presentation/ui/screens/categories_screen.dart';
 import 'package:crafty_bay/presentation/ui/screens/home_screen.dart';
@@ -34,6 +36,8 @@ class _BottomNavBaseScreenState extends State<BottomNavBaseScreen> {
       Get.find<HomeSliderController>().getHomeSliders();
       Get.find<CategoryController>().getCategory();
       Get.find<PopularController>().getPopularProduct();
+      Get.find<NewProductController>().getNewProduct();
+      Get.find<SpecialProductController>().getSpecialProduct();
     });
     super.initState();
   }

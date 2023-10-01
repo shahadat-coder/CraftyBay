@@ -1,6 +1,8 @@
 import 'package:crafty_bay/presentation/State_Holder/category_controller.dart';
 import 'package:crafty_bay/presentation/State_Holder/home_slider_controller.dart';
+import 'package:crafty_bay/presentation/State_Holder/new_product_controller.dart';
 import 'package:crafty_bay/presentation/State_Holder/popular_product_controller.dart';
+import 'package:crafty_bay/presentation/State_Holder/special_product_controller.dart';
 import 'package:crafty_bay/presentation/ui/screens/auth/email_verification_screen.dart';
 import 'package:crafty_bay/presentation/ui/screens/categories_screens/electronics_categories_screen.dart';
 import 'package:crafty_bay/presentation/ui/screens/categories_screens/productList_screen.dart';
@@ -157,14 +159,24 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               SizedBox(
                 height: 155,
-                child: ListView.builder(
-                  itemCount: 6,
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (context, index) {
-                    // return const ProductCard(
-                    //   icon: Icons.favorite_border_rounded,
-                    // );
-                  },
+                child: GetBuilder<SpecialProductController>(
+                    builder: (popularController) {
+                      if(popularController.getSpecialProductInProgress) {
+                        return const Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      }
+
+                      return ListView.builder(
+                        itemCount: popularController.specialProductModel.data!.length ?? 0,
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: (context, index) {
+                          return ProductCard(
+                            product:  popularController.specialProductModel.data![index],
+                          );
+                        },
+                      );
+                    }
                 ),
               ),
               SectionHeader(
@@ -175,14 +187,23 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               SizedBox(
                 height: 155,
-                child: ListView.builder(
-                  itemCount: 6,
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (context, index) {
-                    // return const ProductCard(
-                    //   icon: Icons.favorite_border_rounded,
-                    // );
-                  },
+                child: GetBuilder<NewProductController>(
+                    builder: (popularController) {
+                      if(popularController.getNewProductInProgress) {
+                        return const Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      }
+                      return ListView.builder(
+                        itemCount: popularController.newProductModel.data!.length ?? 0,
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: (context, index) {
+                          return ProductCard(
+                            product:  popularController.newProductModel.data![index],
+                          );
+                        },
+                      );
+                    }
                 ),
               ),
             ],

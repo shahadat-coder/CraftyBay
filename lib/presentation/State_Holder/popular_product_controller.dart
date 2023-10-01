@@ -6,11 +6,11 @@ import '../../data/models/popular_model.dart';
 
 class PopularController extends GetxController{
 bool _getPopularProductInProgress = false;
-PopularModel _popularModel = PopularModel();
+ProductModel _popularModel = ProductModel();
 String _errorMassage = '';
 bool get getPopularProductInProgress => _getPopularProductInProgress;
 
-PopularModel get popularProductModel => _popularModel;
+ProductModel get popularProductModel => _popularModel;
 
 String get errorMassage => _errorMassage;
 
@@ -20,7 +20,7 @@ Future<bool> getPopularProduct() async {
   final NetworkResponse response = await NetworkCaller().getRequest(Urls.getProductByRemarks('popular'));
   _getPopularProductInProgress = false;
   if (response.isSuccess) {
-    _popularModel = PopularModel.fromJson(response.responseJson?? {});
+    _popularModel = ProductModel.fromJson(response.responseJson?? {});
     update();
     return true;
   } else {
