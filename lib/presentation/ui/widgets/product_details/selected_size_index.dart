@@ -2,7 +2,7 @@ import 'package:crafty_bay/presentation/ui/utils/color_palette.dart';
 import 'package:flutter/material.dart';
 
 class SelectedSizeIndex extends StatefulWidget{
-  const SelectedSizeIndex({super.key});
+  const SelectedSizeIndex({super.key, required int initialSelected, required Null Function(int selectedSize) onSelected, required sizes});
   @override
   State<SelectedSizeIndex> createState() => _SelectedSizeIndex();
 }

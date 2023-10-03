@@ -17,7 +17,7 @@ class ProductCard extends StatelessWidget {
     return InkWell(
       borderRadius: BorderRadius.circular(8),
       onTap: () {
-        Get.to(ProductDetailsScreen());
+        Get.to(ProductDetailsScreen(productId: product.id!,));
       },
       child: Card(
         shadowColor: ColorPalette.primaryColor.withOpacity(0.1),

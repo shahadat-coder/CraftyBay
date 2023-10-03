@@ -15,8 +15,8 @@ class _AddToCart extends State<AddToCart>{
       decoration: BoxDecoration(
           color: ColorPalette.primaryColor.withOpacity(0.1),
           borderRadius: const BorderRadius.only(
-            topLeft: Radius.circular(16),
-            topRight: Radius.circular(16),
+            topLeft: Radius.circular(10),
+            topRight: Radius.circular(10),
           )
       ),
       child: Row(
