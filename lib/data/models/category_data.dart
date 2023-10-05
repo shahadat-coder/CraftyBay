@@ -1,54 +1,32 @@
 class CategoryData {
-  CategoryData({
-    num? id,
-    String? categoryName,
-    String? categoryImg,
-    String? createdAt,
-    String? updatedAt,}){
-    _id = id;
-    _categoryName = categoryName;
-    _categoryImg = categoryImg;
-    _createdAt = createdAt;
-    _updatedAt = updatedAt;
-  }
+  int? id;
+  String? categoryName;
+  String? categoryImg;
+  String? createdAt;
+  String? updatedAt;
 
-  CategoryData.fromJson(dynamic json) {
-    _id = json['id'];
-    _categoryName = json['categoryName'];
-    _categoryImg = json['categoryImg'];
-    _createdAt = json['created_at'];
-    _updatedAt = json['updated_at'];
+  CategoryData(
+      {this.id,
+        this.categoryName,
+        this.categoryImg,
+        this.createdAt,
+        this.updatedAt});
+
+  CategoryData.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    categoryName = json['categoryName'];
+    categoryImg = json['categoryImg'];
+    createdAt = json['created_at'];
+    updatedAt = json['updated_at'];
   }
-  num? _id;
-  String? _categoryName;
-  String? _categoryImg;
-  String? _createdAt;
-  String? _updatedAt;
-  CategoryData copyWith({  num? id,
-    String? categoryName,
-    String? categoryImg,
-    String? createdAt,
-    String? updatedAt,
-  }) => CategoryData(  id: id ?? _id,
-    categoryName: categoryName ?? _categoryName,
-    categoryImg: categoryImg ?? _categoryImg,
-    createdAt: createdAt ?? _createdAt,
-    updatedAt: updatedAt ?? _updatedAt,
-  );
-  num? get id => _id;
-  String? get categoryName => _categoryName;
-  String? get categoryImg => _categoryImg;
-  String? get createdAt => _createdAt;
-  String? get updatedAt => _updatedAt;
 
   Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    map['id'] = _id;
-    map['categoryName'] = _categoryName;
-    map['categoryImg'] = _categoryImg;
-    map['created_at'] = _createdAt;
-    map['updated_at'] = _updatedAt;
-    return map;
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['categoryName'] = this.categoryName;
+    data['categoryImg'] = this.categoryImg;
+    data['created_at'] = this.createdAt;
+    data['updated_at'] = this.updatedAt;
+    return data;
   }
-
 }

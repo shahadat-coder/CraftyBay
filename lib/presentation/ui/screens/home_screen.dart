@@ -115,7 +115,9 @@ class _HomeScreenState extends State<HomeScreen> {
                             onTap: () {
                               Get.to(const ElectronicsCategoriesScreen());
                             },
-                            child: CategoryCard(categoryData: categoryController.categoryModel.data![index],));
+                            child: CategoryCard(categoryData: categoryController.categoryModel.data![index], onTap: () {
+                             Get.to(ProductListScreen(categoryId: categoryController.categoryModel.data![index].id!,));
+                            },));
                       },
                     );
                   }
@@ -127,7 +129,7 @@ class _HomeScreenState extends State<HomeScreen> {
               SectionHeader(
                 title: 'Popular',
                 onTap: () {
-                  Get.to(const ProductListScreen());
+                  Get.to( ProductListScreen(productModel: Get.find<PopularController>().popularProductModel ,));
                 },
               ),
               SizedBox(
@@ -154,7 +156,7 @@ class _HomeScreenState extends State<HomeScreen> {
               SectionHeader(
                 title: 'Special',
                 onTap: () {
-                  Get.to(const ProductListScreen());
+                  Get.to( ProductListScreen(productModel: Get.find<SpecialProductController>().specialProductModel));
                 },
               ),
               SizedBox(
@@ -182,12 +184,12 @@ class _HomeScreenState extends State<HomeScreen> {
               SectionHeader(
                 title: 'New',
                 onTap: () {
-                  Get.to(const ProductListScreen());
+                  Get.to( ProductListScreen(productModel: Get.find<NewProductController>().newProductModel,));
                 },
               ),
               SizedBox(
                 height: 155,
-                child: GetBuilder<NewProductController>(
+                child:GetBuilder<NewProductController>(
                     builder: (popularController) {
                       if(popularController.getNewProductInProgress) {
                         return const Center(

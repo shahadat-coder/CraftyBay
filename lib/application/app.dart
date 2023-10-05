@@ -7,12 +7,17 @@ import 'package:get/route_manager.dart';
 
 import 'state_holder_binder.dart';
 
-class CraftyBayApp extends StatelessWidget {
-  const CraftyBayApp({super.key});
+class CraftyBay extends StatelessWidget {
+
+ static GlobalKey<NavigatorState> globalKey = GlobalKey<NavigatorState>();
+
+
+  const CraftyBay({super.key});
 
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      navigatorKey: CraftyBay.globalKey,
       debugShowCheckedModeBanner: false,
       initialBinding: StateHolderBinder(),
       theme: ThemeData(

@@ -17,7 +17,7 @@ String get errorMassage => _errorMassage;
 Future<bool> getPopularProduct() async {
   _getPopularProductInProgress = true;
   update();
-  final NetworkResponse response = await NetworkCaller().getRequest(Urls.getProductByRemarks('popular'));
+  final NetworkResponse response = await NetworkCaller.getRequest(Urls.getProductByRemarks('popular'));
   _getPopularProductInProgress = false;
   if (response.isSuccess) {
     _popularModel = ProductModel.fromJson(response.responseJson?? {});

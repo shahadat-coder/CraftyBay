@@ -1,5 +1,6 @@
 import 'package:crafty_bay/presentation/State_Holder/category_controller.dart';
 import 'package:crafty_bay/presentation/State_Holder/main_bottom_nav_controller.dart';
+import 'package:crafty_bay/presentation/ui/screens/categories_screens/productList_screen.dart';
 import 'package:crafty_bay/presentation/ui/widgets/category_coustomize/category_card.dart';
 import 'package:crafty_bay/presentation/ui/widgets/category_coustomize/constraints.dart';
 import 'package:flutter/material.dart';
@@ -55,10 +56,14 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                     mainAxisSpacing: 16,
                   ),
                   itemBuilder: (context, index) {
-                   return  FittedBox(
-                     child: CategoryCard(
+                    return FittedBox(
+                      child: CategoryCard(
                         categoryData:
-                        categoryController.categoryModel.data![index]
+                        categoryController.categoryModel.data![index],
+                        onTap: () {
+                          Get.to(ProductListScreen(
+                              categoryId: categoryController.categoryModel.data![index].id!));
+                     },
                      ),
                   );
                 },

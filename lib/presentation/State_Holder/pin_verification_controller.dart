@@ -16,7 +16,7 @@ class PinVerificationController extends GetxController {
   Future<bool> verifyOtp(String email, String otp) async {
     _pinVerificationInProgress = true;
     update();
-    final NetworkResponse response = await NetworkCaller().getRequest(Urls.verifyOtp(email, otp));
+    final NetworkResponse response = await NetworkCaller.getRequest(Urls.verifyOtp(email, otp));
     _pinVerificationInProgress = false;
     update();
     if (response.isSuccess) {

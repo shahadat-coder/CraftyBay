@@ -18,7 +18,7 @@ class CategoryController extends GetxController {
   Future<bool> getCategory() async {
     _getCategoryProgress = true;
     update();
-    final NetworkResponse response = await NetworkCaller().getRequest(Urls.getCategory);
+    final NetworkResponse response = await NetworkCaller.getRequest(Urls.getCategory);
     _getCategoryProgress = false;
     if (response.isSuccess) {
       _categoryModel = CategoryModel.fromJson(response.responseJson?? {});

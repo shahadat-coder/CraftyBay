@@ -19,7 +19,7 @@ String get errorMassage => _errorMassage;
 Future<bool> getSpecialProduct() async {
   _getSpecialProductInProgress = true;
   update();
-  final NetworkResponse response = await NetworkCaller().getRequest(Urls.getProductByRemarks('special'));
+  final NetworkResponse response = await NetworkCaller.getRequest(Urls.getProductByRemarks('special'));
   _getSpecialProductInProgress = false;
   if (response.isSuccess) {
     _SpecialModel = ProductModel.fromJson(response.responseJson?? {});
