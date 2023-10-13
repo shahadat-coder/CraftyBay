@@ -295,7 +295,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                if (result) {
                Get.snackbar('Added to cart',
                'This product has been added to cart list',
-               snackPosition: SnackPosition.BOTTOM);
+               snackPosition: SnackPosition.TOP);
                 }
                  },
 

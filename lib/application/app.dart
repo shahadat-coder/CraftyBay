@@ -1,57 +1,94 @@
-import 'package:crafty_bay/presentation/State_Holder/main_bottom_nav_controller.dart';
+import 'dart:async';
+import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:crafty_bay/application/state_holder_binder.dart';
 import 'package:crafty_bay/presentation/ui/screens/splash_screen.dart';
 import 'package:crafty_bay/presentation/ui/utils/color_palette.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/route_manager.dart';
 
-import 'state_holder_binder.dart';
+class CraftyBay extends StatefulWidget {
+  static GlobalKey<NavigatorState> globalKey = GlobalKey<NavigatorState>();
 
-class CraftyBay extends StatelessWidget {
+  const CraftyBay({Key? key}) : super(key: key);
 
- static GlobalKey<NavigatorState> globalKey = GlobalKey<NavigatorState>();
+  @override
+  State<CraftyBay> createState() => _CraftyBayState();
+}
 
+class _CraftyBayState extends State<CraftyBay> {
+  late final StreamSubscription _connectivityStatusStream;
 
-  const CraftyBay({super.key});
+  @override
+  void initState() {
+    checkInitialInternetConnection();
+    checkInternetConnectivityStatus();
+    super.initState();
+  }
+
+  void checkInitialInternetConnection() async {
+    final result = await Connectivity().checkConnectivity();
+    handleConnectivityStates(result);
+  }
+
+  void checkInternetConnectivityStatus() {
+    _connectivityStatusStream = Connectivity().onConnectivityChanged.listen((status) {
+      handleConnectivityStates(status);
+    });
+  }
+
+  void handleConnectivityStates(ConnectivityResult status) {
+    if (status != ConnectivityResult.mobile && status != ConnectivityResult.wifi) {
+      Get.showSnackbar(const GetSnackBar(
+        title: 'No internet!',
+        message: 'Please check your internet connectivity',
+        isDismissible: false,
+      ));
+    } else {
+      if (Get.isSnackbarOpen) {
+        Get.closeAllSnackbars();
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      navigatorKey: CraftyBay.globalKey,
       debugShowCheckedModeBanner: false,
+      navigatorKey: CraftyBay.globalKey,
+      home: const SplashScreen(),
       initialBinding: StateHolderBinder(),
       theme: ThemeData(
-        primarySwatch: MaterialColor(
-            ColorPalette.primaryColor.value, ColorPalette().colors),
-        inputDecorationTheme: InputDecorationTheme(
-            contentPadding: const EdgeInsets.symmetric(
-              horizontal: 15,
-              vertical: 8,
+          primarySwatch:
+          MaterialColor(ColorPalette.primaryColor.value, ColorPalette().colors),
+          elevatedButtonTheme: ElevatedButtonThemeData(
+            style: ElevatedButton.styleFrom(
+              padding: const EdgeInsets.symmetric(vertical: 12),
+              textStyle: const TextStyle(
+                  fontSize: 16, letterSpacing: 0.5, fontWeight: FontWeight.w600),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8),
+              ),
             ),
-            hintStyle: TextStyle(
-              color: Colors.grey[350],
+          ),
+          inputDecorationTheme: const InputDecorationTheme(
+            contentPadding: EdgeInsets.symmetric(horizontal: 16),
+            border: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.grey)
             ),
-            filled: true,
-            fillColor: Colors.grey[50],
             enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(5.0),
-              borderSide: const BorderSide(color: ColorPalette.primaryColor),
+                borderSide: BorderSide(color: Colors.grey)
             ),
-            focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(5.0),
-              borderSide: const BorderSide(color: ColorPalette.primaryColor),
+            disabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.grey)
             ),
-            errorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(5.0),
-              borderSide: const BorderSide(color: Colors.redAccent),
-            ),
-            focusedErrorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(5.0),
-              borderSide: const BorderSide(color: Colors.redAccent),
-            ),
-            errorStyle: const TextStyle(color: Colors.redAccent)),
+          )
       ),
-      home: const SplashScreen(),
     );
+  }
+
+  @override
+  void dispose() {
+    _connectivityStatusStream.cancel();
+    super.dispose();
   }
 }

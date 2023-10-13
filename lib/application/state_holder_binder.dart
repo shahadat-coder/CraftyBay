@@ -1,4 +1,5 @@
 import 'package:crafty_bay/presentation/State_Holder/ProductDetails_Controller.dart';
+import 'package:crafty_bay/presentation/State_Holder/cart_list_controller.dart';
 import 'package:crafty_bay/presentation/State_Holder/category_controller.dart';
 import 'package:crafty_bay/presentation/State_Holder/email_verification_controller.dart';
 import 'package:crafty_bay/presentation/State_Holder/home_slider_controller.dart';
@@ -27,6 +28,7 @@ class StateHolderBinder extends Bindings{
     Get.put(ProductDetailsController());
     Get.put(AddToCartController());
     Get.put(ProductListController());
+    Get.put(CartListController());
   }
 
 }

@@ -43,19 +43,20 @@ enlargeFactor: 0.2,
                         color: ColorPalette.primaryColor.withOpacity(0.15),
                         borderRadius: BorderRadius.circular(8)),
                     alignment: Alignment.center,
-                    child: Stack(
+                    child: Row(
                         children: [
-                          Image.network(SliderData. image ??  ''),
+                          Image.network(SliderData. image ??  '',height: 170,width: 170,),
+                          const SizedBox(width: 10,),
                           Positioned(
-                            bottom: 0,
+                            bottom:0,
                           child: Column(
                               mainAxisSize: MainAxisSize.min,
-                              mainAxisAlignment: MainAxisAlignment.end,
+                              mainAxisAlignment: MainAxisAlignment.start,
                               children: [
-                            Text(SliderData.title ?? '',style: TextStyle(
-                              fontSize: 18,
+                            Text(SliderData.title ?? '',style: const TextStyle(
+                              fontSize: 15,
                               fontWeight: FontWeight.w600,
-                              color: Colors.white,
+                              color: Colors.blueGrey,
                             )),
 
                           ]))
