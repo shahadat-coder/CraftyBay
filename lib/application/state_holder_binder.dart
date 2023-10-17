@@ -9,6 +9,7 @@ import 'package:crafty_bay/presentation/State_Holder/pin_verification_controller
 import 'package:crafty_bay/presentation/State_Holder/popular_product_controller.dart';
 import 'package:crafty_bay/presentation/State_Holder/product_list_controller.dart';
 import 'package:crafty_bay/presentation/State_Holder/special_product_controller.dart';
+import 'package:crafty_bay/presentation/State_Holder/theme_mode_controller.dart';
 import '../presentation/State_Holder/add to cart_controller.dart';
 import 'package:get/get.dart';
 
@@ -29,6 +30,7 @@ class StateHolderBinder extends Bindings{
     Get.put(AddToCartController());
     Get.put(ProductListController());
     Get.put(CartListController());
+    Get.lazyPut(() => ThemeModeController());
   }
 
 }

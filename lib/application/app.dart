@@ -6,6 +6,8 @@ import 'package:crafty_bay/presentation/ui/utils/color_palette.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+// final ThemeModeController themeModeController = ThemeModeController();
+
 class CraftyBay extends StatefulWidget {
   static GlobalKey<NavigatorState> globalKey = GlobalKey<NavigatorState>();
 
@@ -52,6 +54,9 @@ class _CraftyBayState extends State<CraftyBay> {
 
   @override
   Widget build(BuildContext context) {
+    // return ValueListenableBuilder(
+    //   valueListenable: themeModeController.themeMode,
+    //   builder: (context, themeMode, _) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       navigatorKey: CraftyBay.globalKey,
@@ -83,6 +88,35 @@ class _CraftyBayState extends State<CraftyBay> {
             ),
           )
       ),
+      darkTheme: ThemeData(
+          brightness: Brightness.dark,
+          primarySwatch:
+          MaterialColor(ColorPalette.primaryColor.value, ColorPalette().colors),
+          elevatedButtonTheme: ElevatedButtonThemeData(
+            style: ElevatedButton.styleFrom(
+              padding: const EdgeInsets.symmetric(vertical: 12),
+              textStyle: const TextStyle(
+                  fontSize: 16, letterSpacing: 0.5, fontWeight: FontWeight.w600),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8),
+              ),
+            ),
+          ),
+          inputDecorationTheme: const InputDecorationTheme(
+            contentPadding: EdgeInsets.symmetric(horizontal: 16),
+            border: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.grey)
+            ),
+            enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.grey)
+            ),
+            disabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.grey)
+            ),
+          )
+      ),
+      // themeMode: themeMode,
+      // }
     );
   }
 

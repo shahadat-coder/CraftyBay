@@ -39,6 +39,21 @@ class _HomeScreenState extends State<HomeScreen> {
           width: 115,
         ),
         actions: [
+
+          AppBarIconButton(
+            icon: Icons.light_mode,
+            onPressed: () {
+                // themeModeController.toggleThemeMode();
+                    if (Get.isDarkMode) {
+                      Get.changeThemeMode(ThemeMode.light);
+                    } else {
+                      Get.changeThemeMode(ThemeMode.dark);
+                    }
+                  },
+          ),
+          const SizedBox(
+            width: 12,
+          ),
           AppBarIconButton(
             icon: Icons.person_outlined,
             onPressed: () {
