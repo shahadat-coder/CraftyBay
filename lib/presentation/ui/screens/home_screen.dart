@@ -3,6 +3,7 @@ import 'package:crafty_bay/presentation/State_Holder/home_slider_controller.dart
 import 'package:crafty_bay/presentation/State_Holder/new_product_controller.dart';
 import 'package:crafty_bay/presentation/State_Holder/popular_product_controller.dart';
 import 'package:crafty_bay/presentation/State_Holder/special_product_controller.dart';
+import 'package:crafty_bay/presentation/ui/screens/auth/complete_profile_screen.dart';
 import 'package:crafty_bay/presentation/ui/screens/auth/email_verification_screen.dart';
 import 'package:crafty_bay/presentation/ui/screens/categories_screens/electronics_categories_screen.dart';
 import 'package:crafty_bay/presentation/ui/screens/categories_screens/productList_screen.dart';
@@ -56,12 +57,9 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           AppBarIconButton(
             icon: Icons.person_outlined,
-            onPressed: () {
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(
-                  content: Text('This is a Snackbar!'),
-                ),
-              );
+            onPressed: () {(
+                  Get.to( const CompleteProfileScreen()),
+            );
             },
           ),
           const SizedBox(

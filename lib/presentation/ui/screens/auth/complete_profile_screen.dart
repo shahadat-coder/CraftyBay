@@ -1,12 +1,16 @@
-import 'package:crafty_bay/presentation/ui/screens/home_screen.dart';
-import 'package:crafty_bay/presentation/ui/utils/asset_images.dart';
+import 'package:crafty_bay/presentation/State_Holder/createProfile_Controller.dart';
+import 'package:crafty_bay/presentation/State_Holder/read_profile%20controller.dart';
+import 'package:crafty_bay/presentation/ui/screens/bottom_nav_base_screen.dart';
+import 'package:crafty_bay/presentation/ui/widgets/auth/auth_screen-uper.dart';
+import 'package:crafty_bay/presentation/ui/widgets/product_details/AllOver_elevetad.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 class CompleteProfileScreen extends StatefulWidget {
-  const CompleteProfileScreen({super.key});
+  const CompleteProfileScreen({
+    super.key,
+  });
 
   @override
   State<CompleteProfileScreen> createState() => _CompleteProfileScreenState();
@@ -16,10 +20,23 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _firstNameController = TextEditingController();
   final TextEditingController _lastNameController = TextEditingController();
-  final TextEditingController _mobileNumberController = TextEditingController();
+  final TextEditingController _mobileController = TextEditingController();
   final TextEditingController _cityController = TextEditingController();
   final TextEditingController _shippingAddressController =
-      TextEditingController();
+  TextEditingController();
+  ReadProfileController readProfileController =
+  Get.put(ReadProfileController());
+
+
+  @override
+  void initState() {
+    super.initState();
+    _firstNameController.text = readProfileController.readProfileModel.data?.first.firstName ?? '';
+    _lastNameController.text = readProfileController.readProfileModel.data?.first.lastName ?? '';
+    _mobileController.text = readProfileController.readProfileModel.data?.first.mobile ?? '';
+    _cityController.text = readProfileController.readProfileModel.data?.first.city ?? '';
+    _shippingAddressController.text = readProfileController.readProfileModel.data?.first.shippingAddress ?? '';
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,152 +46,157 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
         child: Form(
           key: _formKey,
           child: SingleChildScrollView(
-            child: Column(
-              children: [
-                const SizedBox(
-                  height: 120,
-                ),
-                Center(
-                    child: SvgPicture.asset(
-                  AppImageAssets.craftyBayLogoSVG,
-                  width: 120,
-                )),
-                const SizedBox(
-                  height: 20,
-                ),
-                Text(
-                  'Complete Profile',
-                  style: Theme.of(context)
-                      .textTheme
-                      .titleLarge
-                      ?.copyWith(fontSize: 28, color: Colors.grey[800]),
-                ),
-                const SizedBox(
-                  height: 6,
-                ),
-                Text(
-                  'Get started wiyh us with your details',
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodySmall
-                      ?.copyWith(fontSize: 14, color: Colors.grey),
-                ),
-                const SizedBox(
-                  height: 16,
-                ),
-                TextFormField(
-                  controller: _firstNameController,
-                  keyboardType: TextInputType.text,
-                  textInputAction: TextInputAction.next,
-                  decoration: const InputDecoration(
-                    hintText: 'First Name',
-                  ),
-                  validator: (String? value) {
-                    if (value?.isEmpty ?? true) {
-                      return "Enter your first name";
-                    }
-                    return null;
-                  },
-                ),
-                const SizedBox(
-                  height: 12,
-                ),
-                TextFormField(
-                  controller: _lastNameController,
-                  keyboardType: TextInputType.text,
-                  textInputAction: TextInputAction.next,
-                  decoration: const InputDecoration(
-                    hintText: 'Last Name',
-                  ),
-                  validator: (String? value) {
-                    if (value?.isEmpty ?? true) {
-                      return "Enter your last name";
-                    }
-                    return null;
-                  },
-                ),
-                const SizedBox(
-                  height: 12,
-                ),
-                TextFormField(
-                  controller: _mobileNumberController,
-                  keyboardType: TextInputType.phone,
-                  textInputAction: TextInputAction.next,
-                  inputFormatters: [
-                    FilteringTextInputFormatter.digitsOnly, // Only allow digits
-                    LengthLimitingTextInputFormatter(11), // Limit the length
-                  ],
-                  decoration: const InputDecoration(
-                    hintText: 'Mobile',
-                  ),
-                  validator: (String? value) {
-                    if ((value?.isEmpty ?? true) || value!.length < 11) {
-                      return "Enter your 11 digit mobile number";
-                    }
-                    final RegExp mobileRegex = RegExp(r'^01[0-9]{9}$');
-                    if (!mobileRegex.hasMatch(value)) {
-                      return "Enter a valid mobile number";
-                    }
-                    return null;
-                  },
-                ),
-                const SizedBox(
-                  height: 12,
-                ),
-                TextFormField(
-                  controller: _cityController,
-                  keyboardType: TextInputType.text,
-                  textInputAction: TextInputAction.next,
-                  decoration: const InputDecoration(
-                    hintText: 'City',
-                  ),
-                  validator: (String? value) {
-                    if (value?.isEmpty ?? true) {
-                      return "Enter your city name";
-                    }
-                    return null;
-                  },
-                ),
-                const SizedBox(
-                  height: 12,
-                ),
-                TextFormField(
-                  maxLines: 4,
-                  controller: _shippingAddressController,
-                  keyboardType: TextInputType.text,
-                  textInputAction: TextInputAction.next,
-                  decoration: const InputDecoration(
-                      hintText: 'Shipping Address',
-                      contentPadding:
-                          EdgeInsets.symmetric(horizontal: 15, vertical: 8)),
-                  validator: (String? value) {
-                    if (value?.isEmpty ?? true) {
-                      return "Enter your shipping address";
-                    }
-                    return null;
-                  },
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                SizedBox(
-                  width: double.infinity,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      if (!_formKey.currentState!.validate()) {
-                        return;
-                      }
-
-                      Get.offAll(() => const HomeScreen());
-                    },
-                    child: const Text('Complete'),
-                  ),
-                ),
-              ],
-            ),
+            child: userInfoTextFormFields,
           ),
         ),
       ),
+    );
+  }
+
+  Column get userInfoTextFormFields {
+    return Column(
+      children: [
+        const AuthScreensUpperParts(
+          title: 'Complete Profile',
+          subTitle: 'Get started wiyh us with your details',
+        ),
+        TextFormField(
+          controller: _firstNameController,
+          keyboardType: TextInputType.text,
+          textInputAction: TextInputAction.next,
+          decoration: const InputDecoration(
+            hintText: 'First Name',
+          ),
+          validator: (String? value) {
+            if (value?.isEmpty ?? true) {
+              return "Enter your first name";
+            }
+            return null;
+          },
+        ),
+        const SizedBox(
+          height: 12,
+        ),
+        TextFormField(
+          controller: _lastNameController,
+          keyboardType: TextInputType.text,
+          textInputAction: TextInputAction.next,
+          decoration: const InputDecoration(
+            hintText: 'Last Name',
+          ),
+          validator: (String? value) {
+            if (value?.isEmpty ?? true) {
+              return "Enter your last name";
+            }
+            return null;
+          },
+        ),
+        const SizedBox(
+          height: 12,
+        ),
+        TextFormField(
+          controller: _mobileController,
+          keyboardType: TextInputType.phone,
+          textInputAction: TextInputAction.next,
+          inputFormatters: [
+            FilteringTextInputFormatter.digitsOnly,
+            LengthLimitingTextInputFormatter(11), // Limit the length
+          ],
+          decoration: const InputDecoration(
+            hintText: 'Mobile',
+          ),
+          validator: (String? value) {
+            if ((value?.isEmpty ?? true) || value!.length < 11) {
+              return "Enter your 11 digit mobile number";
+            }
+            final RegExp mobileRegex = RegExp(r'^01[0-9]{9}$');
+            if (!mobileRegex.hasMatch(value)) {
+              return "Enter a valid mobile number";
+            }
+            return null;
+          },
+        ),
+        const SizedBox(
+          height: 12,
+        ),
+        TextFormField(
+          controller: _cityController,
+          keyboardType: TextInputType.text,
+          textInputAction: TextInputAction.next,
+          decoration: const InputDecoration(
+            hintText: 'City',
+          ),
+          validator: (String? value) {
+            if (value?.isEmpty ?? true) {
+              return "Enter your city name";
+            }
+            return null;
+          },
+        ),
+        const SizedBox(
+          height: 12,
+        ),
+        TextFormField(
+          maxLines: 4,
+          controller: _shippingAddressController,
+          keyboardType: TextInputType.text,
+          textInputAction: TextInputAction.done,
+          decoration: const InputDecoration(
+              hintText: 'Shipping Address',
+              contentPadding:
+              EdgeInsets.symmetric(horizontal: 15, vertical: 8)),
+          validator: (String? value) {
+            if (value?.isEmpty ?? true) {
+              return "Enter your shipping address";
+            }
+            return null;
+          },
+        ),
+        const SizedBox(
+          height: 10,
+        ),
+        GetBuilder<CreateProfileController>(
+          builder: (createProfileController) {
+            if (createProfileController.createProfileInProgress) {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+            return AllOverElevatedButton(
+              buttonName: 'Complete',
+              onPressed: () {
+                if (_formKey.currentState!.validate()) {
+                  createProfileController
+                      .createProfileData(
+                      _firstNameController.text.trim(),
+                      _lastNameController.text.trim(),
+                      _mobileController.text.trim(),
+                      _cityController.text.trim(),
+                      _shippingAddressController.text.trim())
+                      .then(
+                        (result) {
+                      if (result) {
+                        Get.snackbar(
+                          'Thank you for joining us! ツ',
+                          'Profile created successfully',
+                          backgroundColor: Colors.green.withOpacity(.2),
+                          snackPosition: SnackPosition.TOP,
+                        );
+                        Get.offAll(() => const BottomNavBaseScreen());
+
+                      } else {
+                        Get.snackbar('Opps! :(', 'Profile create failed',
+                            backgroundColor: Colors.red.withOpacity(.2),
+                            snackPosition: SnackPosition.BOTTOM);
+                      }
+                    },
+                  );
+                }
+              },
+            );
+          },
+        ),
+      ],
     );
   }
 }
