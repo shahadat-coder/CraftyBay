@@ -1,14 +1,15 @@
+import 'package:crafty_bay/data/models/product.dart';
 import 'package:crafty_bay/presentation/ui/utils/color_palette.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../data/models/category_data.dart';
+
 
 class CategoryCard extends StatelessWidget {
   const CategoryCard({
     super.key, required this.categoryData, required this.onTap,
   });
 
-  final CategoryData categoryData;
+  final Category categoryData;
   final VoidCallback onTap;
 
   @override

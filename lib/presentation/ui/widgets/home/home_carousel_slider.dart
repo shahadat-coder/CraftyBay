@@ -43,9 +43,9 @@ enlargeFactor: 0.2,
                         color: ColorPalette.primaryColor.withOpacity(0.15),
                         borderRadius: BorderRadius.circular(8)),
                     alignment: Alignment.center,
-                    child: Row(
+                    child: Column(
                         children: [
-                          Image.network(SliderData. image ??  '',height: 170,width: 170,),
+                          Image.network(SliderData. image ??  '',fit:BoxFit.cover,height: 130,),
                           const SizedBox(width: 10,),
                           Positioned(
                             bottom:0,

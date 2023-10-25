@@ -1,7 +1,6 @@
 import 'package:crafty_bay/data/models/productDetails.dart';
 import 'package:crafty_bay/presentation/State_Holder/ProductDetails_Controller.dart';
 import 'package:crafty_bay/presentation/State_Holder/add%20to%20cart_controller.dart';
-import 'package:crafty_bay/presentation/ui/utils/color_extension.dart';
 import 'package:crafty_bay/presentation/ui/utils/color_palette.dart';
 import 'package:crafty_bay/presentation/ui/widgets/category_coustomize/custom_steper.dart';
 import 'package:crafty_bay/presentation/ui/widgets/home/product_image_slider.dart';
@@ -22,6 +21,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
 
   int _selectedColorIndex = 0;
   int _selectedSizeIndex = 0;
+  int quantity= 0;
 
 
   @override
@@ -104,7 +104,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                   stepValue: 1,
                   value: 1,
                   onChange: (newValue) {
-                    print(newValue);
+                    quantity = newValue;
                   })
             ],
           ),
@@ -161,40 +161,22 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
           const SizedBox(
             height: 16,
           ),
+
           SizedBox(
             height: 28,
-            child: ListView.separated(
-              scrollDirection: Axis.horizontal,
-              itemCount: colors.length,
-              itemBuilder: (context, index) {
-                print(colors[index]);
-                return InkWell(
-                  borderRadius: BorderRadius.circular(20),
-                  onTap: () {
-                    _selectedColorIndex = index;
-                    if (mounted) {
-                      setState(() {});
-                    }
-                  },
-                  child: CircleAvatar(
-                    radius: 18,
-                    backgroundColor: HexColor.fromHex(colors[index]),
-                    child: _selectedColorIndex == index
-                        ? const Icon(
-                      Icons.done,
-                      color: Colors.white,
-                    )
-                        : null,
-                  ),
-                );
-              },
-              separatorBuilder: (BuildContext context, int index) {
-                return const SizedBox(
-                  width: 8,
-                );
-              },
+            child: SizedBox(
+              height: 28,
+              child: SizePicker(
+                initialSelected: 0,
+                onSelected: (int selectedColor) {
+                  _selectedColorIndex = selectedColor;
+                },
+                sizes: productDetails.color?.split(',') ?? [],
+              ),
             ),
           ),
+
+
           const SizedBox(
             height: 16,
           ),
@@ -294,6 +276,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                details.id!,
                colors[_selectedColorIndex].toString(),
                sizes[_selectedSizeIndex],
+                 quantity,
                );
                if (result) {
                Get.snackbar('Added to cart',

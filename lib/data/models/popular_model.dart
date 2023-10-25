@@ -1,7 +1,4 @@
-import 'package:crafty_bay/data/models/brand_data.dart';
-import 'package:crafty_bay/data/models/category_data.dart';
 import 'package:crafty_bay/data/models/product.dart';
-import 'package:flutter/foundation.dart';
 
 class ProductModel {
     String? msg;

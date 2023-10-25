@@ -93,7 +93,7 @@ class _PinVerificationScreenState extends State<PinVerificationScreen> {
                 height: 6,
               ),
               Text(
-                'A 4 digit OTP code has been sent',
+                'A 6 digit OTP code has been sent',
                 style: Theme
                     .of(context)
                     .textTheme
@@ -103,44 +103,40 @@ class _PinVerificationScreenState extends State<PinVerificationScreen> {
               const SizedBox(
                 height: 16,
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 60,
+              PinCodeTextField(
+                controller: _pinController,
+                length: 6,
+                obscureText: false,
+                animationType: AnimationType.fade,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                keyboardType: TextInputType.number,
+                pinTheme: PinTheme(
+                  shape: PinCodeFieldShape.box,
+                  borderRadius: BorderRadius.circular(5),
+                  fieldHeight: 50,
+                  fieldWidth: 50,
+                  activeFillColor: Colors.white,
+                  inactiveFillColor: Colors.white,
+                  selectedFillColor: Colors.white,
+                  activeColor: ColorPalette.primaryColor,
+                  inactiveColor: ColorPalette.primaryColor,
+                  selectedColor: Colors.green,
                 ),
-                child: PinCodeTextField(
-                  controller: _pinController,
-                  length: 4,
-                  obscureText: false,
-                  keyboardType: TextInputType.number,
-                  animationType: AnimationType.fade,
-                  pinTheme: PinTheme(
-                      shape: PinCodeFieldShape.box,
-                      borderRadius: BorderRadius.circular(5),
-                      fieldHeight: 50,
-                      fieldWidth: 50,
-                      activeColor: ColorPalette.primaryColor,
-                      activeFillColor: Colors.white,
-                      inactiveColor: ColorPalette.primaryColor,
-                      inactiveFillColor: Colors.white,
-                      selectedColor: ColorPalette.primaryColor,
-                      selectedFillColor: Colors.white,
-                      errorBorderColor: Colors.redAccent),
-                  validator: (String? value) {
-                    if (value?.isEmpty ?? true) {
-                      return "Enter the OTP sent to your email";
-                    }
-                    return null;
-                  },
-                  animationDuration: const Duration(milliseconds: 300),
-                  backgroundColor: Colors.transparent,
-                  enableActiveFill: true,
-                  onCompleted: (v) {},
-                  onChanged: (value) {},
-                  beforeTextPaste: (text) {
-                    return false;
-                  },
-                  appContext: context,
-                ),
+                validator: (String? value) {
+                  if (value?.isEmpty ?? true) {
+                    return "Enter the OTP sent to your email";
+                  }
+                  return null;
+                },
+                animationDuration: const Duration(milliseconds: 300),
+                backgroundColor: Colors.transparent,
+                enableActiveFill: true,
+                onCompleted: (v) {},
+                onChanged: (value) {},
+                beforeTextPaste: (text) {
+                  return false;
+                },
+                appContext: context,
               ),
               const SizedBox(
                 height: 10,
