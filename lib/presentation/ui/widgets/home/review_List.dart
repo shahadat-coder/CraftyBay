@@ -1,85 +1,124 @@
-import 'package:crafty_bay/presentation/ui/widgets/home/add_new_review.dart';
+import 'package:crafty_bay/presentation/State_Holder/auth_controller.dart';
+import 'package:crafty_bay/presentation/State_Holder/main_bottom_nav_controller.dart';
+import 'package:crafty_bay/presentation/State_Holder/product_review_controller.dart';
+import 'package:crafty_bay/presentation/State_Holder/read_profile%20controller.dart';
+import 'package:crafty_bay/presentation/ui/screens/auth/email_verification_screen.dart';
+import 'package:crafty_bay/presentation/ui/screens/create_review_screen.dart';
+import 'package:crafty_bay/presentation/ui/utils/color_palette.dart';
+import 'package:crafty_bay/presentation/ui/widgets/review_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../utils/color_palette.dart';
+import '../category_coustomize/constraints.dart';
 
-class ProductReviewList extends StatefulWidget {
-  const ProductReviewList({
-    super.key,
-  });
+class ProductReviewScreen extends StatefulWidget {
+  final int productId;
+
+  const ProductReviewScreen({super.key, required this.productId});
 
   @override
-  State<ProductReviewList> createState() => _ProductReviewListState();
+  State<ProductReviewScreen> createState() => _ProductReviewScreenState();
 }
 
-class _ProductReviewListState extends State<ProductReviewList> {
+class _ProductReviewScreenState extends State<ProductReviewScreen> {
+  @override
+  void initState() {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
+      await Get.find<ProductReviewController>()
+          .getProductReviews(widget.productId);
+    });
+    setState(() {});
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body:
-       SafeArea(
-
-         child: Column(
-           children: [
-             AppBar(
-               leading: const BackButton(
-                 color: Colors.black54,
-               ),
-               title: const Text('Reviews',
-                   style: TextStyle(
-                     color: Colors.black54,
-                   )),
-               backgroundColor: Colors.transparent,
-               elevation: 0,
-             ),
-             Container(
-              margin: const EdgeInsets.symmetric(vertical: 5),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: ListTile(
-                title: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    CircleAvatar(
-                        backgroundColor: Colors.grey[300],
-                        foregroundColor: Colors.grey[600],
-                        radius: 12,
-                        child: const Icon(
-                          Icons.person_outlined,
-                          size: 16,
-                        )),
-                    const SizedBox(
-                      width: 8,
-                    ),
-                    const Text('MD. Shahadat Hossain'),
-                  ],
-                ),
-                subtitle: const Column(
-                  children: [
-                    SizedBox(
-                      height: 8,
-                    ),
-                    Text(
-                      '''A split system air conditioner is split into two parts: a wall-mounted indoor unit in the room you’re cooling, and an outdoor unit that contains the compressor box. 
-                      ''',
-                      style: TextStyle(fontSize: 15),
-                    ),
-                  ],
-                ),
-              ),
-      ),
-           ],
-         ),
-       ),
-
-      floatingActionButton: FloatingActionButton(
-          child: const Icon(Icons.add),
-          backgroundColor: ColorPalette.primaryColor,
+      appBar: AppBar(
+        elevation: 0.5,
+        backgroundColor: appBackgroundColor,
+        title: Text('Review List', style: appBarStyle),
+        leading: IconButton(
+          color: iconColor,
+          icon: const Icon(Icons.arrow_back_ios_new_rounded),
           onPressed: () {
-            Get.to(() => const AddReviewScreen());
+            // Get.back();
+            Get.find<MainButtonNavController>().backToHome();
+          },
+        ),
+      ),
+      body: GetBuilder<ProductReviewController>(
+          builder: (productReviewScreenController) {
+            if (productReviewScreenController.getProductReviewInProgress) {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: ListView.builder(
+                      itemCount: productReviewScreenController
+                          .productReviewModel.data?.length ??
+                          0,
+                      itemBuilder: (BuildContext context, int index) {
+                        return ReviewCard(
+                          productReviewData: productReviewScreenController
+                              .productReviewModel.data![index],
+                        );
+                      },
+                    ),
+                  ),
+                ),
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                  decoration: BoxDecoration(
+                      color: ColorPalette.primaryColor.withOpacity(0.1),
+                      borderRadius: const BorderRadius.only(
+                        topLeft: Radius.circular(16),
+                        topRight: Radius.circular(16),
+                      )),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Reviews (${productReviewScreenController.productReviewModel.data?.length ?? 0})',
+                        style: const TextStyle(
+                            fontWeight: FontWeight.w600,
+                            fontSize: 16,
+                            color: Colors.black54),
+                      ),
+                      InkWell(
+                        onTap: () async {
+                          await Get.find<ReadProfileController>().readProfileData();
+                          if (AuthController.isLoggedIn) {
+                            Get.to(() => CreateReviewScreen(
+                              productId: widget.productId,
+                            ));
+                          } else {
+                            Get.offAll(() => EmailVerificationScreen());
+                          }
+                        },
+                        borderRadius: BorderRadius.circular(30),
+                        child: CircleAvatar(
+                          radius: 25,
+                          backgroundColor: ColorPalette.primaryColor,
+                          child: const Icon(
+                            Icons.add,
+                            color: Colors.white,
+                            size: 20,
+                            weight: 50,
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                )
+              ],
+            );
           }),
     );
   }
