@@ -1,4 +1,5 @@
 import 'package:crafty_bay/data/models/productDetails.dart';
+import 'package:crafty_bay/data/models/product_details_Model.dart';
 import 'package:crafty_bay/presentation/State_Holder/ProductDetails_Controller.dart';
 import 'package:crafty_bay/presentation/State_Holder/add%20to%20cart_controller.dart';
 import 'package:crafty_bay/presentation/ui/utils/color_palette.dart';
@@ -9,8 +10,11 @@ import 'package:crafty_bay/presentation/ui/widgets/product_details/selected_size
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../data/models/wish_list_model.dart';
+
 class ProductDetailsScreen extends StatefulWidget {
   final int productId;
+
   const ProductDetailsScreen({super.key, required this.productId});
 
   @override
@@ -21,7 +25,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
 
   int _selectedColorIndex = 0;
   int _selectedSizeIndex = 0;
-  int quantity= 0;
+  int quantity = 0;
 
 
   @override
@@ -54,16 +58,21 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                             children: [
                               ProductImageSlider(
                                 imageList: [
-                                  productDetailsController.productDetails.img1 ?? '',
-                                  productDetailsController.productDetails.img2 ?? '',
-                                  productDetailsController.productDetails.img3 ?? '',
-                                  productDetailsController.productDetails.img4 ?? '',
+                                  productDetailsController.productDetails
+                                      .img1 ?? '',
+                                  productDetailsController.productDetails
+                                      .img2 ?? '',
+                                  productDetailsController.productDetails
+                                      .img3 ?? '',
+                                  productDetailsController.productDetails
+                                      .img4 ?? '',
                                 ],
                               ),
                               productDetailsAppBar,
                             ],
                           ),
-                          productDetails(productDetailsController.productDetails,
+                          productDetails(
+                              productDetailsController.productDetails,
                               productDetailsController.availableColors),
                         ],
                       ),
@@ -130,7 +139,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
               ),
               TextButton(
                 onPressed: () {
-                  Get.to(const ProductReviewList());
+                  Get.to(() => ProductReviewScreen(productId: productDetails!.productId?? 0 ));
                 },
                 child: const Text(
                   'Review',
@@ -232,7 +241,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
     );
   }
 
-  Container cartToCartBottomContainer(ProductDetails details, List<String> colors, List<String> sizes) {
+  Container cartToCartBottomContainer(ProductDetails details,
+      List<String> colors, List<String> sizes) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
       decoration: BoxDecoration(
@@ -270,23 +280,23 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                       child: CircularProgressIndicator(),
                     );
                   }
-                return ElevatedButton(
-                onPressed: () async {
-               final result = await addToCartController.addToCart(
-               details.id!,
-               colors[_selectedColorIndex].toString(),
-               sizes[_selectedSizeIndex],
-                 quantity,
-               );
-               if (result) {
-               Get.snackbar('Added to cart',
-               'This product has been added to cart list',
-               snackPosition: SnackPosition.TOP);
-                }
-                 },
+                  return ElevatedButton(
+                    onPressed: () async {
+                      final result = await addToCartController.addToCart(
+                        details.id!,
+                        colors[_selectedColorIndex].toString(),
+                        sizes[_selectedSizeIndex],
+                        quantity,
+                      );
+                      if (result) {
+                        Get.snackbar('Added to cart',
+                            'This product has been added to cart list',
+                            snackPosition: SnackPosition.TOP);
+                      }
+                    },
 
-                 child: const Text('Add to cart'),
-               );
+                    child: const Text('Add to cart'),
+                  );
                 }
             ),
           )
@@ -295,3 +305,4 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
     );
   }
 }
+

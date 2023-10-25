@@ -2,6 +2,7 @@ import 'package:crafty_bay/presentation/State_Holder/ProductDetails_Controller.d
 import 'package:crafty_bay/presentation/State_Holder/cart_list_controller.dart';
 import 'package:crafty_bay/presentation/State_Holder/category_controller.dart';
 import 'package:crafty_bay/presentation/State_Holder/createProfile_Controller.dart';
+import 'package:crafty_bay/presentation/State_Holder/create_review_controller.dart';
 import 'package:crafty_bay/presentation/State_Holder/create_wish_list.dart';
 import 'package:crafty_bay/presentation/State_Holder/delete_wish_list_product.dart';
 import 'package:crafty_bay/presentation/State_Holder/email_verification_controller.dart';
@@ -11,6 +12,7 @@ import 'package:crafty_bay/presentation/State_Holder/new_product_controller.dart
 import 'package:crafty_bay/presentation/State_Holder/pin_verification_controller.dart';
 import 'package:crafty_bay/presentation/State_Holder/popular_product_controller.dart';
 import 'package:crafty_bay/presentation/State_Holder/product_list_controller.dart';
+import 'package:crafty_bay/presentation/State_Holder/product_review_controller.dart';
 import 'package:crafty_bay/presentation/State_Holder/read_profile%20controller.dart';
 import 'package:crafty_bay/presentation/State_Holder/special_product_controller.dart';
 import 'package:crafty_bay/presentation/State_Holder/theme_mode_controller.dart';
@@ -41,6 +43,8 @@ class StateHolderBinder extends Bindings{
     Get.put(DeleteWishListProductController());
     Get.put(WishListController());
     Get.put(CreateWishListController());
+    Get.put(ProductReviewController());
+    Get.put(CreateReviewScreenController());
   }
 
 }

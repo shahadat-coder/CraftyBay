@@ -4,7 +4,6 @@ import 'package:crafty_bay/presentation/State_Holder/main_bottom_nav_controller.
 import 'package:crafty_bay/presentation/State_Holder/product_review_controller.dart';
 import 'package:crafty_bay/presentation/ui/widgets/category_coustomize/constraints.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
 
 class CreateReviewScreen extends StatelessWidget {
@@ -64,22 +63,6 @@ class CreateReviewScreen extends StatelessWidget {
                   ),
                   const SizedBox(
                     height: 12,
-                  ),
-                  RatingBar.builder(
-                    initialRating: 4.5,
-                    minRating: 1,
-                    direction: Axis.horizontal,
-                    allowHalfRating: true,
-                    itemCount: 5,
-                    itemPadding: const EdgeInsets.symmetric(horizontal: 4.0),
-                    itemBuilder: (context, _) => const Icon(
-                      Icons.star,
-                      color: Colors.amber,
-                    ),
-                    onRatingUpdate: (rating) {
-                      print(rating);
-                      _rating = rating; // Update the rating variable
-                    },
                   ),
                   const SizedBox(
                     height: 16,
