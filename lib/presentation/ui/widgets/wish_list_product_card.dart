@@ -8,10 +8,12 @@ import 'package:get/get.dart';
 class WishListProductCard extends StatelessWidget {
   final WishListProductData productData;
 
-  const WishListProductCard({
+  const WishListProductCard(
+      {
     super.key,
     required this.productData,
-  });
+  }
+  );
 
   @override
   Widget build(BuildContext context) {
