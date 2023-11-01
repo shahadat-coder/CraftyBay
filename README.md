@@ -49,13 +49,20 @@ CraftyBay is continuously evolving to enhance the shopping experience for users,
 
 ### Online Screen
 <div style="display: flex; flex-wrap: wrap;">
- <![01 11 2023_15 10 00_REC](https://github.com/shahadat349850/CraftyBay/assets/112892447/5ddddcd7-2b97-4558-86d4-09aae08e5268)>
-<![01 11 2023_15 28 29_REC](https://github.com/shahadat349850/CraftyBay/assets/112892447/f3ed74ba-3573-4a16-98f4-e532c355d6bb)>
-<![01 11 2023_15 08 37_REC](https://github.com/shahadat349850/CraftyBay/assets/112892447/48aaf0c1-a238-4c68-9ebf-895ba628e90c)>
-<![01 11 2023_15 19 35_REC](https://github.com/shahadat349850/CraftyBay/assets/112892447/92252455-a816-4d53-8726-57d48b0e3157)>
-<![01 11 2023_15 10 56_REC](https://github.com/shahadat349850/CraftyBay/assets/112892447/ad7f3f09-7646-49d3-91c2-5a938899b771)>
-<![01 11 2023_15 09 33_REC](https://github.com/shahadat349850/CraftyBay/assets/112892447/5bbceffa-9067-4506-bed1-256c9b16efcf)>
-<![01 11 2023_15 16 34_REC](https://github.com/shahadat349850/CraftyBay/assets/112892447/6aa4a7a9-dede-4d10-a2be-82f8b2f55b09)>
+
+![01 11 2023_15 10 00_REC](https://github.com/shahadat349850/CraftyBay/assets/112892447/8cdf8dae-bf4b-48f2-aad5-ba1f901b523d)
+![01 11 2023_15 28 29_REC](https://github.com/shahadat349850/CraftyBay/assets/112892447/38798614-604c-4f82-893b-d5dc37593d13)
+![01 11 2023_15 08 37_REC](https://github.com/shahadat349850/CraftyBay/assets/112892447/4d72e0f9-80ca-4a20-86e9-5916b6ba485a)
+![01 11 2023_15 10 56_REC](https://github.com/shahadat349850/CraftyBay/assets/112892447/47bd5c51-ef0b-4b24-b585-2ab819a80411)
+![01 11 2023_15 09 33_REC](https://github.com/shahadat349850/CraftyBay/assets/112892447/8b9d166a-0545-4566-9abe-984e6874285e)
+![01 11 2023_15 16 34_REC](https://github.com/shahadat349850/CraftyBay/assets/112892447/06c9cb53-5436-4f79-9160-3ce9b6ff9a7c)
+![01 11 2023_15 19 35_REC](https://github.com/shahadat349850/CraftyBay/assets/112892447/fe1b7244-72a2-4967-b79b-e94bcfd266a3)
+![01 11 2023_15 17 14_REC](https://github.com/shahadat349850/CraftyBay/assets/112892447/bd8e70e2-ef25-4270-b83f-0acfb6a4b0d0)
+![01 11 2023_15 20 12_REC](https://github.com/shahadat349850/CraftyBay/assets/112892447/f13357ec-4bef-4df1-a657-30c67b7f10![01 11 2023_15 20 31_REC](https://github.com/shahadat349850/CraftyBay/assets/112892447/04522d70-f02c-4c37-9d6a-cd1fb1023646)
+95)
+![01 11 2023_15 12 07_REC](https://github.com/shahadat349850/CraftyBay/assets/112892447/1e5bd0f5-7f31-4fff-a382-d6aaf67c7f9a)
+![01 11 2023_15 21 03_REC](https://github.com/shahadat349850/CraftyBay/assets/112892447/808ae53c-95fc-460f-8510-157f5d99c114)
+![01 11 2023_15 21 38_REC](https://github.com/shahadat349850/CraftyBay/assets/112892447/f479f890-e306-405f-b69f-bec11488eed3)
 
 
 
