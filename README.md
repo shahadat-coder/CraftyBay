@@ -49,19 +49,18 @@ CraftyBay is continuously evolving to enhance the shopping experience for users,
 
 ### Online Screen
 <div style="display: flex; flex-wrap: wrap;">
-   <img src="https://github.com/muj-i/crafty_bay/blob/main/screenshots/ss0.png" width="200" />
-    <img src="https://github.com/muj-i/crafty_bay/blob/main/screenshots/ss1.png" width="200" />
-    <img src="https://github.com/muj-i/crafty_bay/blob/main/screenshots/ss2.png" width="200" />
-    <img src="https://github.com/muj-i/crafty_bay/blob/main/screenshots/ss3.png" width="200" />
-    <img src="https://github.com/muj-i/crafty_bay/blob/main/screenshots/ss4.png" width="200" />
-    <img src="https://github.com/muj-i/crafty_bay/blob/main/screenshots/ss5.png" width="200" />
-    <img src="https://github.com/muj-i/crafty_bay/blob/main/screenshots/ss11.png" width="200" />
-    <img src="https://github.com/muj-i/crafty_bay/blob/main/screenshots/ss6.png" width="200" />
-    <img src="https://github.com/muj-i/crafty_bay/blob/main/screenshots/ss7.png" width="200" />
-    <img src="https://github.com/muj-i/crafty_bay/blob/main/screenshots/ss8.png" width="200" />
-    <img src="https://github.com/muj-i/crafty_bay/blob/main/screenshots/ss9.png" width="200" />
-    <img src="https://github.com/muj-i/crafty_bay/blob/main/screenshots/ss10.png" width="200" />
+ <![01 11 2023_15 10 00_REC](https://github.com/shahadat349850/CraftyBay/assets/112892447/5ddddcd7-2b97-4558-86d4-09aae08e5268)>
+<![01 11 2023_15 28 29_REC](https://github.com/shahadat349850/CraftyBay/assets/112892447/f3ed74ba-3573-4a16-98f4-e532c355d6bb)>
+<![01 11 2023_15 08 37_REC](https://github.com/shahadat349850/CraftyBay/assets/112892447/48aaf0c1-a238-4c68-9ebf-895ba628e90c)>
+<![01 11 2023_15 19 35_REC](https://github.com/shahadat349850/CraftyBay/assets/112892447/92252455-a816-4d53-8726-57d48b0e3157)>
+<![01 11 2023_15 10 56_REC](https://github.com/shahadat349850/CraftyBay/assets/112892447/ad7f3f09-7646-49d3-91c2-5a938899b771)>
+<![01 11 2023_15 09 33_REC](https://github.com/shahadat349850/CraftyBay/assets/112892447/5bbceffa-9067-4506-bed1-256c9b16efcf)>
+<![01 11 2023_15 16 34_REC](https://github.com/shahadat349850/CraftyBay/assets/112892447/6aa4a7a9-dede-4d10-a2be-82f8b2f55b09)>
+
+
+
 </div>
+
 
 ## Getting Started
 
