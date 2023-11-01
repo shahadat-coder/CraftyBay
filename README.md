@@ -198,8 +198,7 @@ The CraftyBay directory structure is organized as follows:
         │           │   └── otp_expiry_counter_and_resend_button.dart
         │           ├── home/
         │           │   ├── shimmers/
-        │           │   │   ├── categories_shimmer.dart
-        │           │   │   ├── home_slider_shimmer.dart
+        │           │   │  
         │           │   │   └── products_shimmer.dart
         │           │   ├── appbar_action_buttons.dart
         │           │   ├── home_carousel_slider.dart
@@ -222,7 +221,7 @@ The CraftyBay directory structure is organized as follows:
         │           ├── home_icon_button.dart
         │           ├── product_card.dart
         │           ├── product_review_list_tile.dart
-        │           ├── shimmer_container.dart
+        │            
         │           └── wish_list_product_card.dart
         └── main.dart
 ```
