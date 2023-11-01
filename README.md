@@ -120,9 +120,7 @@ The CraftyBay directory structure is organized as follows:
   
 ```
 
-## Contributors
 
-- [Mujahedul Islam](https://github.com/muj-i)
 
 ## Special Thanks
 
@@ -132,7 +130,7 @@ The CraftyBay directory structure is organized as follows:
 
 ### A heartfelt thanks to my classmates:
 
-- [Moniruzzaman](https://github.com/moniruzzaman76) & [Md Alhaz Mondal Hredhay](https://github.com/hredhayxz) to share their knowledges with me & help me complete the project.
+- [Moniruzzaman](https://github.com/moniruzzaman76) & [Md Alhaz Mondal Hredhay](https://github.com/hredhayxz) & [Mujahedul Islam](https://github.com/muj-i) to share their knowledges with me & help me complete the project.
 
 ## License
 
