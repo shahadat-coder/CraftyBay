@@ -99,14 +99,14 @@ class _ProductReviewScreenState extends State<ProductReviewScreen> {
                               productId: widget.productId,
                             ));
                           } else {
-                            Get.offAll(() => EmailVerificationScreen());
+                            Get.offAll(() => const EmailVerificationScreen());
                           }
                         },
                         borderRadius: BorderRadius.circular(30),
-                        child: CircleAvatar(
+                        child: const CircleAvatar(
                           radius: 25,
                           backgroundColor: ColorPalette.primaryColor,
-                          child: const Icon(
+                          child: Icon(
                             Icons.add,
                             color: Colors.white,
                             size: 20,

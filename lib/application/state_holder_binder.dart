@@ -39,7 +39,7 @@ class StateHolderBinder extends Bindings{
     Get.put(ProductListController());
     Get.put(CartListController());
     Get.lazyPut(() => ThemeModeController());
-    Get.put(CreateProfileController());
+    Get.put(CompleteProfileController());
     Get.put(ReadProfileController());
     Get.put(DeleteWishListProductController());
     Get.put(WishListController());
