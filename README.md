@@ -42,20 +42,10 @@ CraftyBay is continuously evolving to enhance the shopping experience for users,
 
 
 ## CraftyBay UI
-
-### Video demonstration of News Reader
-
-[![Video](https://img.youtube.com/vi/xxx/hqdefault.jpg)](https://www.youtube.com/watch?v=xxxx)
-
-### Online Screen
-
 ![02 11 2023_06 15 32_REC](https://github.com/shahadat349850/CraftyBay/assets/112892447/9b5fc30b-2b73-4834-894d-3ca60752463d)
 ![02 11 2023_06 16 19_REC](https://github.com/shahadat349850/CraftyBay/assets/112892447/dddf60fc-88ac-4ad7-a6d3-51751f440095)
 ![02 11 2023_06 15 53_REC](https://github.com/shahadat349850/CraftyBay/assets/112892447/41cf48f5-ad36-486e-8683-f9082999906d)
 ![02 11 2023_06 16 58_REC](https://github.com/shahadat349850/CraftyBay/assets/112892447/fbf5aa7e-8918-4d86-a9c6-a677f99345b4)
-
-
-
 
 ## Getting Started
 
