@@ -93,7 +93,7 @@ CraftyBay integrates the following packages to enhance functionality:
 - `http: ^1.1.0:` The HTTP package provides a straightforward way to make HTTP requests in your Flutter app. It's essential for fetching data from APIs and working with web services.
 - `flutter_launcher_icons: ^0.13.1:` This package simplifies the process of generating and setting app icons for your Flutter application. It allows you to customize app icons with ease.
 - `shared_preferences: ^2.2.1:` Shared Preferences is a Flutter package for persisting simple key-value data in a platform-agnostic manner. It's commonly used for storing app settings and small amounts of data.
-- `shimmer: ^3.0.0:` Shimmer is a package for adding a shimmering effect to your Flutter widgets. It's often used to create loading or placeholder animations to improve user experience.
+- `webview_flutter: ^4.4.1`  is a Flutter plugin that provides a WebView widget for embedding web content within a Flutter app. This is useful when you want to display web pages, web applications, or other web content within your Flutter app. WebView allows you to interact with and display web content without leaving your app.
 - `connectivity_plus: ^5.0.1:` Connectivity Plus is a Flutter package for monitoring network connectivity. It helps you check the status of the device's network connection and react to changes in connectivity.
 
 ## Project Directory Structure
