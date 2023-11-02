@@ -48,10 +48,13 @@ CraftyBay is continuously evolving to enhance the shopping experience for users,
 [![Video](https://img.youtube.com/vi/xxx/hqdefault.jpg)](https://www.youtube.com/watch?v=xxxx)
 
 ### Online Screen
-<div style="display: flex; flex-wrap: wrap;">
-![01 11 2023_16 12 18_REC](https://github.com/shahadat349850/CraftyBay/assets/112892447/e4dcb7e5-7f99-4fe6-b9c7-15b087a75ba1)
 
-</div>
+![02 11 2023_06 15 32_REC](https://github.com/shahadat349850/CraftyBay/assets/112892447/9b5fc30b-2b73-4834-894d-3ca60752463d)
+![02 11 2023_06 16 19_REC](https://github.com/shahadat349850/CraftyBay/assets/112892447/dddf60fc-88ac-4ad7-a6d3-51751f440095)
+![02 11 2023_06 15 53_REC](https://github.com/shahadat349850/CraftyBay/assets/112892447/41cf48f5-ad36-486e-8683-f9082999906d)
+![02 11 2023_06 16 58_REC](https://github.com/shahadat349850/CraftyBay/assets/112892447/fbf5aa7e-8918-4d86-a9c6-a677f99345b4)
+
+
 
 
 ## Getting Started
