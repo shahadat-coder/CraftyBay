@@ -40,8 +40,8 @@ To address these challenges, several strategies and solutions were implemented:
 
 CraftyBay is continuously evolving to enhance the shopping experience for users, and your feedback and contributions are welcome. Thank you for considering CraftyBay for your ecommerce needs!
 
-## Google Drive
-[Apk link](https://drive.google.com/file/d/1mq_sTsl7KZFyhFnLUrDjo8vlMfqHbDcZ/view?fbclid=IwAR2o15bHZ2GbNNHbXy8LJ3rdcHltqR4mib6l79aecZf0PFbR3kB7LgB4Cks).
+## Google Drive here
+[click me for finding APK of CraftyBay](https://drive.google.com/file/d/1mq_sTsl7KZFyhFnLUrDjo8vlMfqHbDcZ/view?fbclid=IwAR2o15bHZ2GbNNHbXy8LJ3rdcHltqR4mib6l79aecZf0PFbR3kB7LgB4Cks).
 
 ## CraftyBay UI
 ![02 11 2023_06 15 32_REC](https://github.com/shahadat349850/CraftyBay/assets/112892447/9b5fc30b-2b73-4834-894d-3ca60752463d)
